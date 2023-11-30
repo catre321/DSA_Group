@@ -8,8 +8,8 @@ public class SecretKey {
 
   public SecretKey() {
     // for the real test, your program will not know this
-    // correctKey = "CHAMOMOCHAHA"; 
-    correctKey = "AAAAAAAAAAAA"; 
+    correctKey = "CHAMOMOCHAHA"; 
+    // correctKey = "AAAAAAAAAAAA"; 
     counter = 0;
   }
 

@@ -14,7 +14,7 @@ public class SecretKeyGuesser {
     // }
     // System.out.println("I found the secret key. It is " + str);
     for (int i=0; i < 5; i++) {
-      if (test(0, i) == 12) break;
+      if (test(0, i) == 12) break; // use recursion to try difference key of character
     }
     // System.out.println("I found the secret key. It is " + str);
     System.out.println("Done: " + String.valueOf(curr));
@@ -73,8 +73,9 @@ public class SecretKeyGuesser {
     
     if (pos == 11) {
       // System.out.println(curr);
-      if (count ++ % 1000000 == 0) {
-        System.out.println(count + " " + String.valueOf(curr));
+      count++;
+      if (count % 1000000 == 0) {
+        System.out.println(count + " " + String.valueOf(curr)); // print per 1 million count to increase running speed
       }
       int guess = key.guess(String.valueOf(curr));
       // System.out.println("Guess: " + guess);
@@ -84,7 +85,7 @@ public class SecretKeyGuesser {
     for (int i=0; i<5; i++) {
       int guess = test(pos + 1, i);
       // if (guess + pos + 2 <= 12) return 12-pos-1;
-      if (guess + pos + 1 <= 11) return 11-pos;
+      if (guess + pos + 1 <= 11) return 11-pos; // terminate if all the character on top is no-hope
       
       if (guess > max) max = guess;
       if (max == 12) return max;
