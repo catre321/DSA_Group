@@ -2,8 +2,8 @@ package Group;
 
 public class SecretKeyGuesser {
   SecretKey key;
-  int value = 0;
-  int max = 0;
+  int currMatches = 0;
+  int currMaxMatches = 0;
   int currIndex = 0;
   int charOfIndex = 0;
   boolean flag = false;
@@ -25,17 +25,17 @@ public class SecretKeyGuesser {
 
     //2nd method
     String str = "MMMMMMMMMMMM";
-    while (value != 12) {
+    while (currMatches != 12) {
       if(!flag){
-        value = key.guess(str);
+        currMatches = key.guess(str);
         System.out.println("Guessing... " + str);
       } else{
         flag = false;
       }
       if(key.getCounter() == 1){
-        max = value;
+        currMaxMatches = currMatches;
       }
-      if(value == 12){
+      if(currMatches == 12){
         break;
       }
       if(charOfIndex >= 5){
@@ -46,7 +46,6 @@ public class SecretKeyGuesser {
 
     // System.out.println("I found the secret key. It is " + str);
     System.out.println("Done: " + String.valueOf(curr));
-    System.out.println("Number of guesses: " + key.getCounter());
 
   }
 
@@ -127,14 +126,14 @@ public class SecretKeyGuesser {
   public String SecondMethod(String current) {
     System.out.println("currIndex: "+ currIndex);
     System.out.println("charOfIndex: "+ charOfIndex);
-    if(max < value) { // correct char
+    if(currMaxMatches < currMatches) { // correct char
             System.out.println("correct char");
       currIndex++;
       charOfIndex = 1;
-      max = value;
+      currMaxMatches = currMatches;
       flag = true;
     }
-    else if(max > value) { // previous char is correct
+    else if(currMaxMatches > currMatches) { // previous char is correct
       System.out.println("previous char is correct");
       curr = current.toCharArray();
       charOfIndex-=2;
@@ -142,7 +141,7 @@ public class SecretKeyGuesser {
       currIndex++;
       charOfIndex = 1;
     }
-    else if (max == value){
+    else if (currMaxMatches == currMatches){
       System.out.println("try next char");
       curr = current.toCharArray();
       curr[currIndex] = _charOf[charOfIndex];
