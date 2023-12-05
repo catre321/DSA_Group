@@ -1,6 +1,4 @@
-package Group;
-
-import java.text.DecimalFormat;
+package SecretkeyGuessing.Modified2;
 
 public class SecretKey {
   private String correctKey;
@@ -9,14 +7,20 @@ public class SecretKey {
   public SecretKey() {
     // for the real test, your program will not know this
     // correctKey = "CHAMOMOCHAHA"; 
-    correctKey = "CMAMOCHMOMOH"; 
+    correctKey = "MOCHAMOCHAMO"; 
     counter = 0;
   }
-  public int getCounter(){
-    return counter;
+
+  public int getCounter() {
+    return this.counter;
   }
+
   public int guess(String guessedKey) {
     counter++;
+    // if (counter <= 10000) {
+    //     System.out.println("Counter: "+ counter);
+    //     System.out.println("I found the secret key. It is " + guessedKey);
+    // }
     // validation
     if (guessedKey.length() != correctKey.length()) {
       return -1;
@@ -32,16 +36,13 @@ public class SecretKey {
       }
     }
     if (matched == correctKey.length()) {
-      // DecimalFormat formatter = new DecimalFormat();
-      // formatter.getDecimalFormatSymbols(",");
-      // String formattedNumber = formatter.format(counter);
-      // System.out.println("Number of guesses: " + formattedNumber);
       System.out.println("Number of guesses: " + counter);
     }
     return matched;
   }
 
-  public static void main(String[] args) {
-    new SecretKeyGuesser().start();
-  }
+//   public static void main(String[] args) {
+//     new SecretKeyGuesser().start();
+// }
+
 }
