@@ -39,8 +39,4 @@ public class SecretKeyGuesser {
             }
         }
     }
-
-    public static void main(String[] args) {
-        new SecretKeyGuesser().start();
-    }
 }

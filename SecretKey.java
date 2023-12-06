@@ -6,8 +6,9 @@ public class SecretKey {
 
   public SecretKey() {
     // for the real test, your program will not know this
-    // correctKey = "CHAMOMOCHAHA"; 
-    correctKey = "MOCHAMOCHAMO"; 
+    correctKey = "CHAMOMOCHAHA";
+    // correctKey = "MOCHHAAMMOOA";
+    // correctKey = "MHOCMAAOHAHC";
     counter = 0;
   }
 
@@ -18,8 +19,8 @@ public class SecretKey {
   public int guess(String guessedKey) {
     counter++;
     // if (counter <= 10000) {
-    //     System.out.println("Counter: "+ counter);
-    //     System.out.println("I found the secret key. It is " + guessedKey);
+    // System.out.println("Counter: "+ counter);
+    // System.out.println("I found the secret key. It is " + guessedKey);
     // }
     // validation
     if (guessedKey.length() != correctKey.length()) {
@@ -28,8 +29,8 @@ public class SecretKey {
     int matched = 0;
     for (int i = 0; i < guessedKey.length(); i++) {
       char c = guessedKey.charAt(i);
-      if (c != 'M' && c != 'O' && c != 'C' && c != 'H' && c != 'A') {  
-       return -1;
+      if (c != 'M' && c != 'O' && c != 'C' && c != 'H' && c != 'A') {
+        return -1;
       }
       if (c == correctKey.charAt(i)) {
         matched++;
@@ -41,8 +42,7 @@ public class SecretKey {
     return matched;
   }
 
-//   public static void main(String[] args) {
-//     new SecretKeyGuesser().start();
-// }
-
+  public static void main(String[] args) {
+    new SecretKeyGuesser().start();
+  }
 }
