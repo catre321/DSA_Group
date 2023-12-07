@@ -1,4 +1,4 @@
-// package Group;
+// package DSA_Group;
 
 public class SecretKeyGuesser {
     private SecretKey key;
@@ -16,9 +16,9 @@ public class SecretKeyGuesser {
 
     private void guessRecursive(char[] current, int index) {
         if (index == 12) {
-            // Base case: found the correct key
+            // Base case: found the key with 12 characters
+            System.out.println("Number of guesses (tracking): " + key.getCounter());
             System.out.println("I found the secret key. It is " + new String(current));
-            System.out.println("Number of guesses: " + key.getCounter());
             return;
         }
 
@@ -27,21 +27,18 @@ public class SecretKeyGuesser {
             current[index] = candidate;
             // Check if the guess is valid
             matched = key.guess(new String(current));
-            if (matched == -1 || matched < index) {
-                continue; // Skip invalid guesses
-            }
 
             if (matched != -1 && matched >= index) {
-                // `matched >= index` (pruning): Only proceed to the char if the number of matched is at least the current index
-                // If the number of matched characters so far is less than the current index, skip unnecessary recursive calls.
+                // `matched >= index` (additional pruning condition): Only proceed to the char
+                // if the number of matched is at least the current index
+                // If the number of matched characters so far is less than the current index,
+                // skip unnecessary recursive calls.
                 guessRecursive(current, index + 1);
             }
-            
             // Break if the correct key is found
             if (matched == 12) {
                 break;
             }
-
         }
     }
 }

@@ -1,4 +1,4 @@
-// package Group;
+// package DSA_Group;
 
 public class SecretKey {
   private String correctKey;
@@ -18,10 +18,6 @@ public class SecretKey {
 
   public int guess(String guessedKey) {
     counter++;
-    // if (counter <= 10000) {
-    // System.out.println("Counter: "+ counter);
-    // System.out.println("I found the secret key. It is " + guessedKey);
-    // }
     // validation
     if (guessedKey.length() != correctKey.length()) {
       return -1;
