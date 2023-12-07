@@ -16,7 +16,7 @@ public class SecretKeyGuesser {
 
     private void guessRecursive(char[] current, int index) {
         if (index == 12) {
-            // Base case: found the key with 12 characters
+            // Base case: the key when it reaches 12 characters
             System.out.println("Number of guesses (tracking): " + key.getCounter());
             System.out.println("I found the secret key. It is " + new String(current));
             return;
