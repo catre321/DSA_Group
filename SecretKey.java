@@ -8,14 +8,17 @@ public class SecretKey {
 
   public SecretKey() {
     // for the real test, your program will not know this
-    // correctKey = "CHAMOMOCHAHA"; 
-    correctKey = "CMAMOCHMOMOH"; 
+    correctKey = "CHAMOMOCHAHA"; 
+    // correctKey = "MOCHAMOCHAMO"; 
+    // correctKey = "MMMMMMMMMMMM"; 
+    // correctKey = "AAAAAAAAAAAA"; 
     counter = 0;
   }
   public int getCounter(){
     return counter;
   }
   public int guess(String guessedKey) {
+    // System.out.println("guessedKey: " + guessedKey);
     counter++;
     // validation
     if (guessedKey.length() != correctKey.length()) {
