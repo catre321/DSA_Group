@@ -32,7 +32,8 @@ public class SecretKeyGuesser {
             }
 
             if (matched != -1 && matched >= index) {
-                // Additional constraint: Only proceed to the next char if the number of matched is at least the current index
+                // `matched >= index` (pruning): Only proceed to the char if the number of matched is at least the current index
+                // If the number of matched characters so far is less than the current index, skip unnecessary recursive calls.
                 guessRecursive(current, index + 1);
             }
             
