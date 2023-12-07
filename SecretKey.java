@@ -35,10 +35,6 @@ public class SecretKey {
       }
     }
     if (matched == correctKey.length()) {
-      // DecimalFormat formatter = new DecimalFormat();
-      // formatter.getDecimalFormatSymbols(",");
-      // String formattedNumber = formatter.format(counter);
-      // System.out.println("Number of guesses: " + formattedNumber);
       System.out.println("Number of guesses: " + counter);
     }
     return matched;

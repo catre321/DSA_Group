@@ -5,7 +5,7 @@ public class SecretKeyGuesser {
   private int currMatches = 0;
   private int currMaxMatches = 0;
   private int currIndex = 0;
-  private int charOfIndex = 1;
+  private int charOfIndex = 0;
   private boolean flag = false; // flag for NOT duplicate guess
     
   private char[] _charOf = new char[] { 'M', 'O', 'C', 'H', 'A' };
@@ -27,24 +27,27 @@ public class SecretKeyGuesser {
     String str = "MMMMMMMMMMMM";
     while (currMatches != 12) {
       if (!flag) {
+        // call to check the key
         currMatches = key.guess(str);
         System.out.println("Guessing... " + str);
       } else {
         flag = false;
       }
+      //init the currMaxMatches for the first run 
       if (key.getCounter() == 1) {
         currMaxMatches = currMatches;
       }
+      // if the key is correct break loop
       if (currMatches == 12) {
         break;
       }
+      // save case if the charOfIndex is over the 5 possible characters 
       if (charOfIndex >= 5) {
-        charOfIndex = 1;
+        charOfIndex = 0;
       }
+      // call for validate the current key
       str = SecondMethod(str);
     }
-
-    // // System.out.println("I found the secret key. It is " + str);
     System.out.println("Done: " + String.valueOf(curr));
 
   }
@@ -66,17 +69,17 @@ public class SecretKeyGuesser {
   //     return guess;
   //   }
   //   int max = 0;
-  //   for (int i = 0; i < 5; i++) {
-  //     int guess = FirstMethod(pos + 1, i);
-  //     // if (guess + pos + 2 <= 12) return 12-pos-1;
-  //     if (guess + pos + 1 <= 11)
-  //       return 11 - pos; // terminate if all the character on top is no-hope
+    // for (int i = 0; i < 5; i++) {
+    //   int guess = FirstMethod(pos + 1, i);
+    //   // if (guess + pos + 2 <= 12) return 12-pos-1;
+    //   if (guess + pos + 1 <= 11)
+    //     return 11 - pos; // terminate if all the character on top is no-hope
 
-  //     if (guess > max)
-  //       max = guess;
-  //     if (max == 12)
-  //       return max;
-  //   }
+    //   if (guess > max)
+    //     max = guess;
+    //   if (max == 12)
+    //     return max;
+    // }
   //   return max;
   // }
 
@@ -84,26 +87,26 @@ public class SecretKeyGuesser {
   private String SecondMethod(String current) {
     System.out.println("currIndex: " + currIndex);
     System.out.println("charOfIndex: " + charOfIndex);
-    if (currMaxMatches < currMatches) { // correct char
+    if (currMaxMatches < currMatches) { // correct character
       System.out.println("correct char");
-      currIndex++;
-      charOfIndex = 1;
-      currMaxMatches = currMatches;
-      flag = true;
+      currIndex++; // point next key character
+      charOfIndex = 0; // reset the possible character pointer 
+      currMaxMatches = currMatches; // update the max value
+      flag = true; // avoid duplicate guess() call 
     } else if (currMaxMatches > currMatches) { // previous char is correct
       System.out.println("previous char is correct");
-      curr = current.toCharArray();
-      charOfIndex -= 2;
-      curr[currIndex] = _charOf[charOfIndex];
-      currIndex++;
-      charOfIndex = 1;
-      currMatches = currMaxMatches;
-      flag = true;
-    } else if (currMaxMatches == currMatches) {
+      curr = current.toCharArray(); 
+      charOfIndex -= 1; // point back to previous possible character
+      curr[currIndex] = _charOf[charOfIndex]; // switch back to previous character
+      currIndex++; // point next key character
+      charOfIndex = 0; // reset the possible character pointer 
+      currMatches = currMaxMatches; // roll back the currMatches value
+      flag = true; // avoid duplicate guess() call 
+    } else {
       System.out.println("try next char");
       curr = current.toCharArray();
-      curr[currIndex] = _charOf[charOfIndex];
-      charOfIndex++;
+      charOfIndex++; // point to next possible character to check
+      curr[currIndex] = _charOf[charOfIndex]; // switch to next character
     }
     System.out.println("the next string: " + String.valueOf(curr));
     return String.valueOf(curr);
