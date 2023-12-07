@@ -11,7 +11,9 @@ public class SecretKey {
     correctKey = "CHAMOMOCHAHA"; 
     // correctKey = "MOCHAMOCHAMO"; 
     // correctKey = "MMMMMMMMMMMM"; 
-    // correctKey = "AAAAAAAAAAAA"; 
+    // correctKey = "AAAAAAAAAAAA";
+    // correctKey = "OMAOHCCAAOHO";  
+    // correctKey = "HAMMOCMOACAM";  
     counter = 0;
   }
   public int getCounter(){

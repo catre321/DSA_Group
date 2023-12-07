@@ -7,10 +7,9 @@ public class SecretKeyGuesser {
   private int currIndex = 0;
   private int charOfIndex = 0;
   private boolean flag = false; // flag for NOT duplicate guess
-    
-  private char[] _charOf = new char[] { 'M', 'O', 'C', 'H', 'A' };
-  private char[] curr = new char[12];
 
+  private char[] _charOf = new char[] { 'M', 'O', 'C', 'H', 'A' };
+  private char[] currKey = new char[12];
 
   public void start() {
     // brute force key guessing
@@ -18,8 +17,8 @@ public class SecretKeyGuesser {
 
     // 1st method
     // for (int i = 0; i < 5; i++) {
-    // if (FirstMethod(0, i) == 12)
-    // break; // use recursion to try difference key of character
+    //   if (FirstMethod(0, i) == 12)
+    //     break; // use recursion to try difference key of character
     // }
 
     // 2nd method
@@ -48,13 +47,14 @@ public class SecretKeyGuesser {
       // call for validate the current key
       str = SecondMethod(str);
     }
-    System.out.println("Done: " + String.valueOf(curr));
+    System.out.println("Done: " + String.valueOf(currKey));
 
   }
 
   // CHAMOMOCHAHA
 
   // 1st method
+
   // public int FirstMethod(int pos, int c) {
   //   curr[pos] = _charOf[c];
 
@@ -69,17 +69,17 @@ public class SecretKeyGuesser {
   //     return guess;
   //   }
   //   int max = 0;
-    // for (int i = 0; i < 5; i++) {
-    //   int guess = FirstMethod(pos + 1, i);
-    //   // if (guess + pos + 2 <= 12) return 12-pos-1;
-    //   if (guess + pos + 1 <= 11)
-    //     return 11 - pos; // terminate if all the character on top is no-hope
+  //   for (int i = 0; i < 5; i++) {
+  //     int guess = FirstMethod(pos + 1, i);
+  //     // if (guess + pos + 2 <= 12) return 12-pos-1;
+  //     if (guess + pos + 1 <= 11)
+  //       return 11 - pos; // terminate if all the character on top is no-hope
 
-    //   if (guess > max)
-    //     max = guess;
-    //   if (max == 12)
-    //     return max;
-    // }
+  //     if (guess > max)
+  //       max = guess;
+  //     if (max == 12)
+  //       return max;
+  //   }
   //   return max;
   // }
 
@@ -95,20 +95,20 @@ public class SecretKeyGuesser {
       flag = true; // avoid duplicate guess() call 
     } else if (currMaxMatches > currMatches) { // previous char is correct
       System.out.println("previous char is correct");
-      curr = current.toCharArray(); 
+      currKey = current.toCharArray();
       charOfIndex -= 1; // point back to previous possible character
-      curr[currIndex] = _charOf[charOfIndex]; // switch back to previous character
+      currKey[currIndex] = _charOf[charOfIndex]; // switch back to previous character
       currIndex++; // point next key character
       charOfIndex = 0; // reset the possible character pointer 
       currMatches = currMaxMatches; // roll back the currMatches value
       flag = true; // avoid duplicate guess() call 
     } else {
       System.out.println("try next char");
-      curr = current.toCharArray();
+      currKey = current.toCharArray();
       charOfIndex++; // point to next possible character to check
-      curr[currIndex] = _charOf[charOfIndex]; // switch to next character
+      currKey[currIndex] = _charOf[charOfIndex]; // switch to next character
     }
-    System.out.println("the next string: " + String.valueOf(curr));
-    return String.valueOf(curr);
+    System.out.println("the next string: " + String.valueOf(currKey));
+    return String.valueOf(currKey);
   }
 }
