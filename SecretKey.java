@@ -9,11 +9,9 @@ public class SecretKey {
   public SecretKey() {
     // for the real test, your program will not know this
     correctKey = "CHAMOMOCHAHA"; 
-    // correctKey = "MOCHAMOCHAMO"; 
-    // correctKey = "MMMMMMMMMMMM"; 
-    // correctKey = "AAAAAAAAAAAA";
-    // correctKey = "OMAOHCCAAOHO";  
-    // correctKey = "HAMMOCMOACAM";  
+    // correctKey = "MACHOHACHOMO"; 
+    // correctKey = "OMAHCHAOCHOM"; 
+    // correctKey = "AHHMCCMOOMOA";
     counter = 0;
   }
   public int getCounter(){
