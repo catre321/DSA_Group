@@ -15,14 +15,6 @@ public class SecretKeyGuesser {
     // brute force key guessing
     key = new SecretKey();
 
-    // 1st method
-    // for (int i = 0; i < 5; i++) {
-    //   if (FirstMethod(0, i) == 12)
-    //     break; // use recursion to try difference key of character
-    // }
-
-    // 2nd method
-
     String str = "MMMMMMMMMMMM";
     while (currMatches != 12) {
       if (!flag) {
@@ -51,39 +43,6 @@ public class SecretKeyGuesser {
 
   }
 
-  // CHAMOMOCHAHA
-
-  // 1st method
-
-  // public int FirstMethod(int pos, int c) {
-  //   curr[pos] = _charOf[c];
-
-  //   if (pos == 11) {
-  //     // System.out.println(curr);
-  //     count++;
-  //     if (count % 1000000 == 0) {
-  //       System.out.println(count + " " + String.valueOf(curr)); // print per 1 million count to increase running speed
-  //     }
-  //     int guess = key.guess(String.valueOf(curr));
-  //     // System.out.println("Guess: " + guess);
-  //     return guess;
-  //   }
-  //   int max = 0;
-  //   for (int i = 0; i < 5; i++) {
-  //     int guess = FirstMethod(pos + 1, i);
-  //     // if (guess + pos + 2 <= 12) return 12-pos-1;
-  //     if (guess + pos + 1 <= 11)
-  //       return 11 - pos; // terminate if all the character on top is no-hope
-
-  //     if (guess > max)
-  //       max = guess;
-  //     if (max == 12)
-  //       return max;
-  //   }
-  //   return max;
-  // }
-
-  // 2nd method
   private String SecondMethod(String current) {
     System.out.println("currIndex: " + currIndex);
     System.out.println("charOfIndex: " + charOfIndex);
